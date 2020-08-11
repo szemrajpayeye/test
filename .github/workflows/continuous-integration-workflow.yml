@@ -18,4 +18,4 @@ jobs:
         with:
           java-version: 11
       - name: Update version in pom.xml
-        run: mvn clean
+        run: ls
