@@ -17,6 +17,6 @@ jobs:
         with:
           java-version: 11
       - name: Update version in pom.xml
-        run:  mvn -B package --file pom.xml
-      - name: add
-        uses: samuelmeuli/action-maven-publish@v1.4.0
+      - shell: bash
+        run:  |
+          expr 3 + 7 > math-homework.txt
