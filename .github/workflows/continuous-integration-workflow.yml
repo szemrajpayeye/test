@@ -5,7 +5,7 @@ on:
     branches: [develop]
 
 jobs:
-  build:
+  publish:
     # Job name is Greeting
     name: Greeting nr 3
     # This job runs on Linux
