@@ -1,13 +1,19 @@
-name: Push commit example
-on: push
+name: Bump up version
+on:
+  pull_request:
+    branches: [develop]
+    types: [closed]
+
 jobs:
-  report:
+  build:
+    if: github.event.pull_request.merged == true
+    name: Bump up version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: run maven command
         run: mvn -B release:update-versions
-      - name: Commit report
+      - name: Commit new version
         run: |
           git config --global user.name 'szemrajpayeye'
           git config --global user.email 'robert.szemraj@payeye.com'
