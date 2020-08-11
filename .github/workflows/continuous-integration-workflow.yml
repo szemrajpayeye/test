@@ -9,6 +9,8 @@ jobs:
         run: mvn -B release:update-versions
       - name: Commit report
         run: |
+          git config --global user.name 'szemrajpayeye'
+          git config --global user.email 'robert.szemraj@payeye.com'
           git add .
           git commit -am "Bump up version"
           git push
