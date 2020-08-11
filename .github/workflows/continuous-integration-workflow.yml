@@ -1,25 +1,17 @@
-name: Bump up version
-on:
-  pull_request:
-    branches: [develop]
-    types: [closed]
-
+name: Push commit example
+on: push
 jobs:
-  build:
-    if: github.event.pull_request.merged == true
-    name: Bump up version
+  report:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: '0'
-      - name: Install Java and Maven
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
-      - name: Update version in pom.xml
-        run: mvn -B release:update-versions
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
+      - uses: actions/checkout@v1
+      - name: Create report file
+        run: date +%s > report.txt
+      - name: Commit report
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout "${GITHUB_REF:11}"
+          git commit -am "Automated report"
+          git push
