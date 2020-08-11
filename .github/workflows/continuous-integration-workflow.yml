@@ -10,7 +10,13 @@ jobs:
     name: Bump up version
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-      - name: Update version in pom.xml
+      - uses: actions/checkout@v2
+      - name: run maven command
         run: mvn -B release:update-versions
+      - name: Commit new version
+        run: |
+          git config --global user.name 'szemrajpayeye'
+          git config --global user.email 'robert.szemraj@payeye.com'
+          git add .
+          git commit -am "Bump up version"
+          git push
