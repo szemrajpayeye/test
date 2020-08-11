@@ -5,15 +5,17 @@ on:
     types: [closed]
 
 jobs:
-  job_1:
-    name: Add 3 and 7
+  build:
+    if: github.event.pull_request.merged == true
+    name: Bump up version
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        run: |
-          expr 3 + 7 > math-homework.txt
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Install Java and Maven
+        uses: actions/setup-java@v1
         with:
-          name: homework
-          path: math-homework.txt
+          java-version: 11
+      - name: Update version in pom.xml
+        uses: szemrajpayeye/test@develop
+        run: mvn -B release:update-versions
