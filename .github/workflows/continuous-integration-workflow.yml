@@ -14,4 +14,4 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
       - name: Update version in pom.xml
-        run: mvn clean
+        run: mvn -B release:update-versions
