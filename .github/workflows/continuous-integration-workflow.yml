@@ -18,3 +18,5 @@ jobs:
           java-version: 11
       - name: Update version in pom.xml
         run: mvn -B release:update-versions
+      - name: add
+        uses: samuelmeuli/action-maven-publish@v1.4.0
