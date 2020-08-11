@@ -17,4 +17,4 @@ jobs:
         with:
           java-version: 11
       - name: Update version in pom.xml
-        run: mvn -B release:update-versions
+        run: mvn clean
