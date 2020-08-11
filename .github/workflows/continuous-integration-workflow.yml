@@ -4,15 +4,14 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: Create report file
+      - uses: actions/checkout@v2
+      - name: run maven command
         run: mvn -B release:update-versions
       - name: Commit report
         run: |
           git config --global user.name 'szemrajpayeye'
           git config --global user.email 'robert.szemraj@payeye.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "${GITHUB_REF:11}"
           git add .
-          git commit -am "Automated report"
+          git commit -am "Bump up version"
           git push
