@@ -1,0 +1,17 @@
+name: Bump up version
+on:
+  pull_request:
+    branches: [develop]
+    types: [closed]
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    name: Bump up version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Update version in pom.xml
+        run: mvn -B release:update-versions
+
