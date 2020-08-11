@@ -14,4 +14,3 @@ jobs:
         uses: actions/checkout@v2
       - name: Update version in pom.xml
         run: mvn -B release:update-versions
-
