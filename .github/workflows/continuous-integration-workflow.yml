@@ -1,13 +1,11 @@
 name: Greet Everyone
 # This workflow is triggered on pushes to the repository.
 on:
-  pull_request:
+  push:
     branches: [develop]
-    types: [closed]
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
     # Job name is Greeting
     name: Greeting nr 3
     # This job runs on Linux
@@ -18,4 +16,4 @@ jobs:
         with:
           java-version: 11
       - name: Update version in pom.xml
-        run: mvn clean
+        run: ls
