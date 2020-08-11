@@ -5,7 +5,7 @@ on:
     types: [closed]
 
 jobs:
-  build:
+  publish:
     if: github.event.pull_request.merged == true
     name: Bump up version
     runs-on: ubuntu-latest
