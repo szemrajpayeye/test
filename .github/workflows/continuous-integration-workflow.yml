@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Create report file
-        run: date +%s > report.txt
+        run: mvn -B release:update-versions
       - name: Commit report
         run: |
           git config --global user.name 'szemrajpayeye'
